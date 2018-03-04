@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title th:text="${action} + ' user'"></title>
+</head>
+<body>
+<form method="post" th:action = "@{/users/{action}(action = ${action})}" th:object="${user}">
+	<label for="user_name">Name: </label>
+	<input type="text" placeholder="用户名" th:field="*{name}" /><br/>
+	<label for="user_age">Age: </label>
+	<input type="text" placeholder="年龄" th:field="*{age}"/><br/>
+	<input type="hidden" th:field="*{id}" /><br/>
+	<label for = "username">用户名：</label>
+	<input type="text" th:field="*{username}" />
+	<span th:if = "${action} == update">	
+		<input type="hidden" th:field="*{password}" />	
+	</span>
+	<span th:if = "${action} == create">
+		<label for="password">密码</label>		
+		<input type="password" th:field="*{password}" />	
+	</span>
+	<input type="submit" value="提交" />
+</form>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+	<legend>用户列表</legend>
+	<thead>
+		<th>用户id</th>
+		<th>用户姓名</th>
+		<th>用户年龄</th>
+	</thead>
+	<tbody>
+		<tr th:each="user : ${userList}">
+			<td th:text="*{user.id}"></td>
+			<td><a th:href="@{/users/update/{id}(id=${user.id})}" th:text="*{user.name}"></a></td>
+			<td th:text="*{user.age}"></td>
+		</tr>
+	</tbody>
+</table>
+<br/>
+<a th:href="@{/users/create}">添加</a>
+<span th:with = "isLogin = ${user} != null">
+	<a th:unless = "${isLogin}" th:href = "@{/login}">登入</a>	
+	<a th:if = "!${isLogin}" th:href="@{/registry}">注册</a>
+	<a th:if = "${isLogin}" th:href="@{/logout}">退出</a>
+</span>
+<a th:href = "@{/articles/all}">查看文章</a>
+<a th:href="@{/admins/announces}">公告中心</a>
+</body>
+</html>

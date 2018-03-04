@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+<div th:object = "${user}"> 
+	<div th:text = "'用户名： ' + *{name}"></div>
+	<div class = "allArticles">
+		<p>所有文章：</p>
+		<div th:each = "article : ${articles}" th:object = "${article}">
+			<a th:href = "@{/articles/article_id-{article_id}(article_id = *{id})}">
+				<div th:text = "*{description}"></div>
+			</a>
+			<div th:text = "*{content}"></div>
+		</div>
+	</div>
+	
+	<div>
+		<p>所有评论：</p>
+		<div th:each = "comment : ${comments}" th:object = "${comment}">
+			<span>所属文章: 
+				<a th:href = "@{/articles/article_id-{article_id}(article_id = *{article.id})}"
+					th:text = "*{article.description}"
+				></a>
+			</span>
+			<div th:text = "*{content}"></div>
+		</div>
+	</div>
+	
+	<div th:if = "${isMe} == true" th:class = "${isMe}">
+		<p>所有公告</p>
+		<div th:each = "announce : ${announces}">
+			<p th:text = "${announce.content}"></p>
+		</div>
+	</div>
+	
+</div>
+</body>
+</html>

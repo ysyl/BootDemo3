@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script th:inline = "javascript">
+/*<![CDATA[*/
+	var articleId = [[${article.id}]];
+	var isLiked = [[${likedCount}]];
+	var likedCount = [[${likedCount}]];
+/*]]>*/
+</script>
+</head>
+<body th:object = "${article}">
+<div class = "description" th:text = "*{description}" ></div>
+<span th:text = "*{creationDate}"></span>
+<span th:text = "|作者：${user.getName()}|"></span>
+<div th:text = "*{content}"></div>
+<br/>
+	<div id="test1" >
+		<comment-module 
+			:comments="comments" 
+			:comment="comment"
+			v-on:post="postComments">
+		</comment-module>		
+	</div>
+	<div id="like">
+		<like v-on:like="likeAction" :is-like="isLike"></like>
+	</div>
+<a th:href = "@{all}">所有文章</a>
+
+
+
+
+<script src="/js/comment-module.js"></script>
+
+</body>
+</html>

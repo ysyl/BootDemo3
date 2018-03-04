@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+<style>
+textarea
+{
+	resize: none;
+}
+
+</style>
+</head>
+<body>
+<form method="post" th:action = "@{/articles/post/{userId}(userId = ${user.getId()})}" th:object = "${article}">
+	<textarea name = "description" rows = "1" cols = "20" placeholder = "输入描述"></textarea><br/>
+	<textarea name = "content" rows = "10" cols = "20" placeholder = "输入内容"></textarea><br/>
+	<input type = "submit" value = "提交" />
+</form>
+</body>
+</html>

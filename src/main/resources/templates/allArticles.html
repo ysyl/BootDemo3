@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+<style>
+.article 
+{
+	border: 1px solid black;
+	width:50rem;
+	box-shadow: 0 0 5px #888888;
+	margin-top: 10px;
+}
+
+.content
+{
+	padding:5px;
+	background: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<a th:href = "'/users/profile/user_id-' + ${user.id}" th:text = "|${notifyCount} 个公告，${reminds.size()} 个提醒 |"></a>
+<div class = "article" th:each = "article : ${articles}">
+	<a th:href = "@{/users/profile/user_id-{user_id}(user_id = ${article.getUser().getId()})}">
+		<div class = "author" th:text = "'作者：' +  ${article.getUser().getUsername()}"></div>
+	</a>
+	<a th:href = "@{/articles/article_id-{article_id}(article_id = ${article.getId()})}"><div class = "content" th:text = "${article.content}"></div></a>	
+</div>
+<br/>
+<span th:with = "isLogin = ${user} != null">
+	<a th:unless = "${isLogin}" th:href = "@{/login}">登入</a>	
+	<a th:if = "!${isLogin}" th:href="@{/registry}">注册</a>
+	<a th:if = "${isLogin}" th:href="@{/logout}">退出</a>
+</span>
+<a th:href = "@{/articles/post}">发布文章</a>
+<a th:href = "@{/admins/allUser}">管理员入口</a>
+</body>
+</html>

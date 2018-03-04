@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="announce-post">
+	<announce-post 
+	:announces="announces"
+	:announce="announce"
+	v-on:post="postAnnounce">
+	</announce-post>
+</div>
+
+
+
+
+<script src="/js/annouce-center.js" />
+</body>
+</html>
